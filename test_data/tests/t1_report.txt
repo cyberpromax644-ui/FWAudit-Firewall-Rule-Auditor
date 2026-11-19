@@ -1,0 +1,12 @@
+===================================
+       FWAudit AUDIT REPORT
+===================================
+Date: 2026-11-19 16:29:01.634335
+Total Rules: 1
+Total Findings: 1
+-----------------------------------
+Rule Number: 1
+Severity: HIGH
+Issue: Any-to-Any Allow Rule
+Evidence: Source and destination are unrestricted
+-----------------------------------

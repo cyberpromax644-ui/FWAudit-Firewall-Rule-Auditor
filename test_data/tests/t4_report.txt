@@ -1,0 +1,12 @@
+===================================
+       FWAudit AUDIT REPORT
+===================================
+Date: 2026-11-19 16:39:32.665590
+Total Rules: 2
+Total Findings: 1
+-----------------------------------
+Rule Number: 2
+Severity: MEDIUM
+Issue: Potential Shadowed Rule
+Evidence: Earlier rule 1 covers this rule's traffic
+-----------------------------------

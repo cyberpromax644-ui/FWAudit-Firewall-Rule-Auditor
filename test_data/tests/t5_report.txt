@@ -1,0 +1,12 @@
+===================================
+       FWAudit AUDIT REPORT
+===================================
+Date: 2026-11-19 17:09:04.283411
+Total Rules: 1
+Total Findings: 1
+-----------------------------------
+Rule Number: 1
+Severity: LOW
+Issue: Logging Disabled
+Evidence: Deny rule has logging disabled
+-----------------------------------

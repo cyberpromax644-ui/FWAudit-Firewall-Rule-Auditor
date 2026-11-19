@@ -1,0 +1,8 @@
+===================================
+       FWAudit AUDIT REPORT
+===================================
+Date: 2026-11-19 17:12:13.383828
+Total Rules: 3
+Total Findings: 0
+-----------------------------------
+No security findings detected.

@@ -1,0 +1,27 @@
+===================================
+       FWAudit AUDIT REPORT
+===================================
+Date: 2026-11-19 16:15:59.361832
+Total Rules: 5
+Total Findings: 4
+-----------------------------------
+Rule Number: 2
+Severity: HIGH
+Issue: Management Port Exposure
+Evidence: Port 3389 has unrestricted source
+-----------------------------------
+Rule Number: 3
+Severity: LOW
+Issue: Logging Disabled
+Evidence: Deny rule has logging disabled
+-----------------------------------
+Rule Number: 4
+Severity: MEDIUM
+Issue: Potential Shadowed Rule
+Evidence: Earlier rule 3 covers this rule's traffic
+-----------------------------------
+Rule Number: 5
+Severity: HIGH
+Issue: Any-to-Any Allow Rule
+Evidence: Source and destination are unrestricted
+-----------------------------------

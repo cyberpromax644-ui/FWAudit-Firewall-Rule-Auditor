@@ -1,0 +1,17 @@
+===================================
+       FWAudit AUDIT REPORT
+===================================
+Date: 2026-11-19 16:32:33.740392
+Total Rules: 2
+Total Findings: 2
+-----------------------------------
+Rule Number: 1
+Severity: HIGH
+Issue: Management Port Exposure
+Evidence: Port 22 has unrestricted source
+-----------------------------------
+Rule Number: 2
+Severity: HIGH
+Issue: Management Port Exposure
+Evidence: Port 3389 has unrestricted source
+-----------------------------------

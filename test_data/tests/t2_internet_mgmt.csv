@@ -1,0 +1,4 @@
+rule_id,source,destination,port,protocol,action,logging
+1,any,192.168.2.10,22,tcp,allow,enabled
+2,any,192.168.2.20,3389,tcp,allow,enabled
+
