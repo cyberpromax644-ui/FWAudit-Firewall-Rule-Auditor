@@ -1,4 +1,29 @@
+# Python virtual environment
 .venv/
-__pycache__/
-*.pyc
+venv/
 
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Generated audit reports
+audit_report.txt
+
+# Temporary and backup files
+*.bak
+*.tmp
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+# Additional backup files
+*_backup.*
+*.backup
+*.before_*
+*.final_backup

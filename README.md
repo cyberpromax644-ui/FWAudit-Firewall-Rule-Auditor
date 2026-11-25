@@ -1,130 +1,273 @@
-# FWAudit: Firewall Rule Auditor
+<div align="center">
 
-- **Name:** Maisa Aslam
-- **Instructor:** Abdul Mannan
-- **Program:** Cyber Security, PNY Trainings
-- **Platform:** Kali Linux, Python 3
+# FWAudit
 
-FWAudit is a command-line tool that reads a firewall rule export (CSV), checks each rule for common configuration weaknesses, and saves a report with the rule number, severity, issue and evidence for every finding. It is read-only: it never changes a firewall or the input file.
+### Firewall Rule Auditor
 
-> **Lab use only.** All tests use fictional firewall rules created for this project. No real firewall, network or third-party system was scanned.
+**Review Firewall Rules. Identify Security Risks. Improve Network Defense.**
 
-## Why this tool
+A Python-based defensive security application for firewall configuration analysis, risk identification and audit reporting.
 
-Firewall rule sets grow over time. Rules that are too broad, management ports open to the internet, rules that never take effect, and deny rules that leave no log are easy to miss when reading rules by hand. FWAudit checks them automatically and consistently.
+<br>
 
-## What it checks
+![Python](https://img.shields.io/badge/Python-3-blue?style=for-the-badge&logo=python&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Kali%20Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
+![Interface](https://img.shields.io/badge/Interface-CLI%20%7C%20GUI-7C3AED?style=for-the-badge)
+![Security](https://img.shields.io/badge/Purpose-Defensive%20Security-16A34A?style=for-the-badge)
 
-| Check | What it finds | Severity |
-|---|---|---|
-| **Any-to-Any Allow** | An allow rule where both source and destination are unrestricted | HIGH |
-| **Management Port Exposure** | SSH (22) or RDP (3389) allowed from an unrestricted source | HIGH |
-| **Shadowed Rule** | A later rule that an earlier rule already covers, so it never takes effect (simplified logic) | MEDIUM |
-| **Deny Logging Gap** | A deny rule with logging disabled, so blocked traffic leaves no record | LOW |
+**Developed by Maisa Aslam**
 
-Severity is a guidance label to help a reviewer prioritise. It is not proof that a system is vulnerable.
+</div>
 
-## Project structure
+---
 
-```
-FWAudit/
-├── main.py              # command-line entry point
-├── parser.py            # reads and validates the CSV
-├── checks.py            # the four security checks
-├── report.py            # builds and saves the text report
-├── README.md
-├── WRITEUP.md           # demo and write-up
-├── DEFENSIVE_LESSON.md  # defensive lesson: rule order and least exposure
-└── test_data/
-    ├── firewall_rules.csv   # sample export
-    └── tests/               # one small CSV per test case
-```
+## Overview
 
-## How to run
+**FWAudit (Firewall Rule Auditor)** is a defensive cybersecurity tool developed to examine firewall rule configurations and identify potentially unsafe settings.
 
-Requires Python 3. No packages need to be installed (standard library only: `csv`, `argparse`, `ipaddress`).
+Firewall rules control network traffic by allowing or denying connections. Incorrectly configured rules can expose sensitive services, weaken access restrictions and create unnecessary security risks.
+
+FWAudit analyzes firewall rule exports in CSV format and produces structured findings with severity levels and supporting evidence.
+
+It combines a command-line auditing engine with a graphical desktop application, providing two ways to perform and review security audits.
+
+## Application Preview
+
+<div align="center">
+
+### FWAudit Dashboard
+
+![FWAudit Dashboard](screenshots/dashboard.png)
+
+*Dashboard displaying audit statistics, security findings and risk information.*
+
+</div>
+
+---
+
+## Core Capabilities
+
+| Capability | Description |
+|---|---|
+| CSV Rule Analysis | Imports and validates firewall rule files. |
+| Any-to-Any Detection | Identifies unrestricted allow configurations. |
+| Management Port Exposure | Checks unrestricted SSH and RDP access. |
+| Shadowed Rule Detection | Highlights potentially shadowed rules. |
+| Logging Analysis | Identifies deny rules with logging disabled. |
+| Risk Classification | Organizes findings by HIGH, MEDIUM and LOW severity. |
+| Audit Reporting | Generates and saves text-based reports. |
+| Dashboard | Displays audit statistics and security summaries. |
+| Report Management | Opens, views and deletes saved reports. |
+
+## Security Analysis
+
+FWAudit performs four primary configuration checks.
+
+### 01 — Any-to-Any Allow
+
+Identifies firewall rules that permit unrestricted traffic between any source and destination.
+
+**Risk:** Unnecessary network exposure.
+
+### 02 — Management Port Exposure
+
+Checks whether management services are accessible from unrestricted sources.
+
+- SSH — Port 22
+- RDP — Port 3389
+
+**Risk:** Management services may be exposed beyond their intended access scope.
+
+### 03 — Potentially Shadowed Rules
+
+Highlights rules that may be affected by earlier matching firewall rules.
+
+**Risk:** Rule ordering may prevent an intended rule from being reached.
+
+### 04 — Disabled Deny Logging
+
+Identifies deny rules where logging is disabled.
+
+**Risk:** Reduced visibility into denied network traffic.
+
+---
+
+## How It Works
+
+<div align="center">
+
+**IMPORT CSV**
+
+↓
+
+**VALIDATE FIREWALL RULES**
+
+↓
+
+**RUN SECURITY CHECKS**
+
+↓
+
+**CLASSIFY FINDINGS**
+
+↓
+
+**DISPLAY RESULTS**
+
+↓
+
+**GENERATE AUDIT REPORT**
+
+</div>
+
+The parser reads the supplied CSV file, the auditing engine evaluates its rules, and the reporting component organizes the findings for review.
+
+---
+
+## Quick Start
+
+### Requirements
+
+- Kali Linux or compatible Linux environment
+- Python 3
+- Tkinter for the desktop interface
+
+### Installation
+
+**1. Clone the repository**
 
 ```bash
 git clone https://github.com/cyberpromax644-ui/FWAudit-Firewall-Rule-Auditor.git
+```
+
+**2. Enter the project directory**
+
+```bash
 cd FWAudit-Firewall-Rule-Auditor
+```
+
+**3. Create a virtual environment**
+
+```bash
+python3 -m venv .venv
+```
+
+**4. Activate the environment**
+
+```bash
+source .venv/bin/activate
+```
+
+### Launch Graphical Interface
+
+```bash
+python3 gui/app.py
+```
+
+### Run Command-Line Audit
+
+```bash
+python3 main.py -i test_data/firewall_rules.csv
+```
+
+### Export Audit Report
+
+```bash
 python3 main.py -i test_data/firewall_rules.csv -o audit_report.txt
 ```
 
-| Option | Meaning |
+---
+
+## Understanding Audit Results
+
+FWAudit organizes findings into three severity categories.
+
+| Level | Meaning |
 |---|---|
-| `-i` | Input CSV file with the firewall rules |
-| `-o` | File where the report is saved |
+| 🔴 HIGH | Important configuration risks requiring attention. |
+| 🟠 MEDIUM | Potential rule conflicts or security concerns. |
+| 🟢 LOW | Minor security or logging weaknesses. |
 
-## Input format
+Each finding includes:
 
-```
+- Rule identification
+- Severity level
+- Issue description
+- Supporting evidence
+
+Severity is a review indicator, not a guarantee of exploitability.
+
+---
+
+## Testing & Verification
+
+The auditing engine was manually verified against six controlled test scenarios.
+
+| Test | Scenario | Expected Result |
+|---|---|---|
+| T1 | Any-to-Any Allow | 1 HIGH |
+| T2 | Internet Management Access | 2 HIGH |
+| T3 | Internal Management Access | No findings |
+| T4 | Potentially Shadowed Rule | 1 MEDIUM |
+| T5 | Deny Without Logging | 1 LOW |
+| T6 | Clean Firewall Rules | No findings |
+
+**Verification Result:** All six scenarios produced their expected findings during manual testing.
+
+---
+
+## Input Specification
+
+FWAudit accepts firewall rules in CSV format.
+
+Required fields:
+
+```csv
 rule_id,source,destination,port,protocol,action,logging
-1,192.168.1.0/24,192.168.2.10,22,tcp,allow,enabled
-2,any,192.168.2.20,3389,tcp,allow,enabled
-3,10.0.0.0/8,192.168.2.30,80,tcp,deny,disabled
-4,10.0.0.0/8,192.168.2.30,80,tcp,allow,enabled
-5,any,any,any,any,allow,disabled
 ```
 
-`action` is `allow` or `deny`. `logging` is `enabled` or `disabled`. `source` and `destination` can be `any`, a single IP address or a CIDR range.
+The parser validates the required fields before the auditing process begins.
 
-## Example output
+---
 
-```
-FWAudit AUDIT REPORT
-Total Rules: 5
-Total Findings: 4
+## Documentation
 
-Rule Number: 2
-Severity: HIGH
-Issue: Management Port Exposure
-Evidence: Port 3389 has unrestricted source
+| Document | Description |
+|---|---|
+| [README](README.md) | Project overview and usage guide |
+| [Project Write-up](WRITEUP.md) | Implementation, demonstration and testing |
+| [Defensive Lesson](DEFENSIVE_LESSON.md) | Firewall rule ordering and security practices |
 
-Rule Number: 3
-Severity: LOW
-Issue: Logging Disabled
-Evidence: Deny rule has logging disabled
+---
 
-Rule Number: 4
-Severity: MEDIUM
-Issue: Potential Shadowed Rule
-Evidence: Earlier rule 3 covers this rule's traffic
+## Scope & Limitations
 
-Rule Number: 5
-Severity: HIGH
-Issue: Any-to-Any Allow Rule
-Evidence: Source and destination are unrestricted
-```
+FWAudit is a focused educational firewall configuration auditing project.
 
-In this sample, rule 3 (deny) comes before rule 4 (allow) for the same traffic, so rule 4 never takes effect. Rule order matters: a firewall uses the first matching rule.
+- Supports CSV-based firewall rule analysis.
+- Uses simplified comparisons for shadowed-rule detection.
+- Focuses on SSH and RDP management access checks.
+- Depends on the accuracy and completeness of supplied input data.
+- Does not reproduce every vendor-specific firewall behavior.
 
-## Testing
+### Responsible Use
 
-Each check was tested with a small CSV in `test_data/tests/`. The last test confirms the tool does not raise false alarms on safe rules. Full details are in [WRITEUP.md](WRITEUP.md).
+FWAudit performs read-only analysis of supplied CSV files.
 
-| Test | Input | Expected | Result |
-|---|---|---|---|
-| 1 | Any-to-any allow rule | HIGH finding | Pass |
-| 2 | SSH and RDP open to `any` | 2 HIGH findings | Pass |
-| 3 | SSH and RDP from internal networks only | No findings | Pass |
-| 4 | Deny rule followed by allow for the same traffic | MEDIUM finding | Pass |
-| 5 | Deny rule with logging disabled | LOW finding | Pass |
-| 6 | Safe rules only | "No security findings detected" | Pass |
+It does not connect to live firewall devices, modify firewall configurations, execute firewall rules or perform network attacks.
 
-## Limitations
+Findings should be reviewed and verified against the actual firewall environment before configuration changes are made.
 
-- Reads a simple CSV format only. Vendor export formats are not supported.
-- Shadowed-rule detection uses simplified logic: it compares one earlier rule with one later rule.
-- Management port checks cover SSH (22) and RDP (3389).
-- This is a learning prototype, not a replacement for a professional firewall review.
+---
 
-## Future improvements
+<div align="center">
 
-- Support more firewall export formats
-- Add unit tests and JSON output
-- Cover more management ports and smarter shadowing analysis
-- Summary dashboard for the report
+## FWAudit
 
-## Defensive lesson
+**Review Rules · Identify Risks · Strengthen Network Defense**
 
-See [DEFENSIVE_LESSON.md](DEFENSIVE_LESSON.md): why rule order matters, how a shadowed deny rule silently leaves traffic allowed, and how to prevent it.
+Developed by **Maisa Aslam**
+
+*Cyber Security Project · Kali Linux · Python 3*
+
+</div>
