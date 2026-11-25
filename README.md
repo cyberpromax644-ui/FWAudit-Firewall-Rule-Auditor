@@ -1,5 +1,3 @@
-<div align="center">
-
 # FWAudit
 
 ### Firewall Rule Auditor
@@ -17,8 +15,6 @@ A Python-based defensive security application for firewall configuration analysi
 
 **Developed by Maisa Aslam**
 
-</div>
-
 ---
 
 ## Overview
@@ -33,15 +29,11 @@ It combines a command-line auditing engine with a graphical desktop application,
 
 ## Application Preview
 
-<div align="center">
-
 ### FWAudit Dashboard
 
 ![FWAudit Dashboard](screenshots/dashboard.png)
 
 *Dashboard displaying audit statistics, security findings and risk information.*
-
-</div>
 
 ---
 
@@ -63,13 +55,13 @@ It combines a command-line auditing engine with a graphical desktop application,
 
 FWAudit performs four primary configuration checks.
 
-### 01 — Any-to-Any Allow
+### 01: Any-to-Any Allow
 
 Identifies firewall rules that permit unrestricted traffic between any source and destination.
 
 **Risk:** Unnecessary network exposure.
 
-### 02 — Management Port Exposure
+### 02: Management Port Exposure
 
 Checks whether management services are accessible from unrestricted sources.
 
@@ -78,13 +70,13 @@ Checks whether management services are accessible from unrestricted sources.
 
 **Risk:** Management services may be exposed beyond their intended access scope.
 
-### 03 — Potentially Shadowed Rules
+### 03: Potentially Shadowed Rules
 
 Highlights rules that may be affected by earlier matching firewall rules.
 
 **Risk:** Rule ordering may prevent an intended rule from being reached.
 
-### 04 — Disabled Deny Logging
+### 04: Disabled Deny Logging
 
 Identifies deny rules where logging is disabled.
 
@@ -94,35 +86,12 @@ Identifies deny rules where logging is disabled.
 
 ## How It Works
 
-<div align="center">
-
-**IMPORT CSV**
-
-↓
-
-**VALIDATE FIREWALL RULES**
-
-↓
-
-**RUN SECURITY CHECKS**
-
-↓
-
-**CLASSIFY FINDINGS**
-
-↓
-
-**DISPLAY RESULTS**
-
-↓
-
-**GENERATE AUDIT REPORT**
-
-</div>
-
-The parser reads the supplied CSV file, the auditing engine evaluates its rules, and the reporting component organizes the findings for review.
-
----
+1. **Import Firewall Rules:** Select a firewall CSV file.
+2. **Validate Input:** Check the CSV structure and required fields.
+3. **Analyze Rules:** Run the built-in security checks.
+4. **Identify Risks:** Detect and classify potential firewall issues.
+5. **Review Findings:** Display findings with severity and evidence.
+6. **Generate Report:** Save the audit results as a report.
 
 ## Quick Start
 
@@ -260,8 +229,6 @@ Findings should be reviewed and verified against the actual firewall environment
 
 ---
 
-<div align="center">
-
 ## FWAudit
 
 **Review Rules · Identify Risks · Strengthen Network Defense**
@@ -269,5 +236,3 @@ Findings should be reviewed and verified against the actual firewall environment
 Developed by **Maisa Aslam**
 
 *Cyber Security Project · Kali Linux · Python 3*
-
-</div>
